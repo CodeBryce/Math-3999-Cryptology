@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../Ciphers/Ceasar Cipher.js"></script>
+</head>
+
+<body>
+    <h1>Welcome to the Cipher Interface</h1>
+    <div class="StartSection">
+        <input type="text" id="inputText" placeholder="Enter text to encrypt">
+        <label for="cipherSelect">Choose a cipher:</label>
+        <select id="cipherSelect">
+            <option value="" selected disabled hidden>Select a cipher</option>
+            <option value="ceasar">Ceasar Cipher</option>
+            <!-- Add more cipher options here -->
+        </select>
+    </div>
+    <div class="cipherContainer">
+        <div id="ceasar">
+            <h2>Ceasar Cipher</h2>
+            <input type="number" id="shiftValue" placeholder="Enter shift value">
+            <button onclick="encryptCeasarCipher()">Encrypt</button>
+            <p id="result"></p>
+        </div>
+    </div>
+</body>
+
+</html>
