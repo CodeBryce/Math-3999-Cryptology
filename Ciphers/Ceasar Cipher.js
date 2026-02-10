@@ -4,20 +4,22 @@ window.addEventListener("load", function () {
 
     function showSelectedCipher() {
         const selectedCipher = select.value;
-        document.querySelectorAll(".cipherContainer > div").forEach(div => {
+        const container = document.querySelector(".CipherContainer");
+        if (container) {
+            container.style.display = selectedCipher ? "block" : "none";
+        }
+
+        document.querySelectorAll(".CipherContainer > div").forEach(div => {
             div.style.display = "none";
         });
 
         if (selectedCipher) {
-            const targetById = document.getElementById(selectedCipher);
-            const targetByData = document.querySelector(`[data-cipher="${selectedCipher}"]`);
-            const target = targetById || targetByData;
+            const target = document.getElementById(selectedCipher);
             if (target) target.style.display = "block";
         }
     }
 
     select.addEventListener("change", showSelectedCipher);
-    select.dispatchEvent(new Event("change"));
 });
 
 function encryptCeasarCipherLogic(text, shift) {
