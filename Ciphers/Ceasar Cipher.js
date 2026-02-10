@@ -22,7 +22,7 @@ window.addEventListener("load", function () {
     select.addEventListener("change", showSelectedCipher);
 });
 
-function encryptCeasarCipherLogic(text, shift) {
+function ceasarCipherLogic(text, shift) {
     let result = "";
     for (let i = 0; i < text.length; i++) {
         let char = text[i];
@@ -39,6 +39,13 @@ function encryptCeasarCipherLogic(text, shift) {
 function encryptCeasarCipher() {
     const inputText = document.getElementById("inputText").value;
     const shiftValue = parseInt(document.getElementById("shiftValue").value);
-    const encryptedText = encryptCeasarCipherLogic(inputText, shiftValue);
+    const encryptedText = ceasarCipherLogic(inputText, shiftValue);
     document.getElementById("result").innerText = `Encrypted Text: ${encryptedText}\nOriginal Text: ${inputText}\nShift Value: ${shiftValue}`;
+}
+
+function decryptCeasarCipher() {
+    const inputText = document.getElementById("inputText").value;
+    const shiftValue = parseInt(document.getElementById("shiftValue").value);
+    const decryptedText = ceasarCipherLogic(inputText, 26 - (shiftValue % 26));
+    document.getElementById("result").innerText = `Decrypted Text: ${decryptedText}\nOriginal Text: ${inputText}\nShift Value: ${shiftValue}`;
 }
