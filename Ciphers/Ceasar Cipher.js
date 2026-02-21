@@ -49,3 +49,8 @@ function decryptCeasarCipher() {
     const decryptedText = ceasarCipherLogic(inputText, 26 - (shiftValue % 26));
     document.getElementById("result").innerText = `Decrypted Text: ${decryptedText}\nOriginal Text: ${inputText}\nShift Value: ${shiftValue}`;
 }
+
+function vigenèreCipherLogic(text, key)
+{
+    
+}
