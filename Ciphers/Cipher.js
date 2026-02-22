@@ -50,7 +50,28 @@ function decryptCeasarCipher() {
     document.getElementById("result").innerText = `Decrypted Text: ${decryptedText}\nOriginal Text: ${inputText}\nShift Value: ${shiftValue}`;
 }
 
-function vigenèreCipherLogic(text, key)
-{
-    
+function vigenèreCipherLogic(text, key) {
+    let result = "";
+    let keyIndex = 0;
+    for (let i = 0; i < text.length; i++) {
+        let char = text[i];
+        if (char.match(/[a-z]/i)) {
+            let code = text.charCodeAt(i);
+            let base = (code >= 65 && code <= 90) ? 65 : 97;
+            let keyChar = key[keyIndex % key.length].toUpperCase();
+            let keyShift = keyChar.charCodeAt(0) - 65;
+            char = String.fromCharCode(((code - base + keyShift) % 26) + base);
+            keyIndex++;
+        }
+        result += char;
+    }
+    return result;
 }
+
+function encryptVigenereCipher() {
+    const inputText = document.getElementById("inputText").value;
+    const key = document.getElementById("key").value;
+    const encryptedText = vigenèreCipherLogic(inputText, key);
+    document.getElementById("result").innerText = `Encrypted Text: ${encryptedText}\nOriginal Text: ${inputText}\nKey: ${key}`;
+}
+
