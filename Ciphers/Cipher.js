@@ -22,35 +22,54 @@ window.addEventListener("load", function () {
     select.addEventListener("change", showSelectedCipher);
 });
 
-function ceasarCipherLogic(text, shift) {
-    let result = "";
-    for (let i = 0; i < text.length; i++) {
-        let char = text[i];
-        if (char.match(/[a-z]/i)) {
-            let code = text.charCodeAt(i);
-            let base = (code >= 65 && code <= 90) ? 65 : 97;
-            char = String.fromCharCode(((code - base + shift) % 26) + base);
-        }
-        result += char;
-    }
-    return result;
-}
-
 function encryptCeasarCipher() {
-    const inputText = document.getElementById("inputText").value;
-    const shiftValue = parseInt(document.getElementById("shiftValue").value);
-    const encryptedText = ceasarCipherLogic(inputText, shiftValue);
-    document.getElementById("result").innerText = `Encrypted Text: ${encryptedText}\nOriginal Text: ${inputText}\nShift Value: ${shiftValue}`;
+    const msgInput = document.getElementById('inputText');
+    const shiftInput = document.getElementById('shiftValue');
+    const outputDiv = document.getElementById('result');
+
+    const text = msgInput.value;
+    const k = parseInt(shiftInput.value) || 0;
+    let result = "";
+
+    for (let i = 0; i < text.length; i++) {
+        const code = text.charCodeAt(i);
+
+        if (code >= 65 && code <= 90) {
+            const p = code - 65;
+            let c = (p + k) % 26;
+            if (c < 0) c += 26;
+            result += String.fromCharCode(c + 65);
+        }
+        else if (code >= 97 && code <= 122) {
+            const p = code - 97;
+            let c = (p + k) % 26;
+            if (c < 0) c += 26;
+            result += String.fromCharCode(c + 97);
+        }
+        else if (code >= 48 && code <= 57) {
+            const p = code - 48;
+            let c = (p + k) % 10;
+            if (c < 0) c += 10;
+            result += String.fromCharCode(c + 48);
+        }
+        else {
+            result += text[i];
+        }
+    }
+    outputDiv.innerText = "Encrypted Text: " + result;
 }
 
 function decryptCeasarCipher() {
-    const inputText = document.getElementById("inputText").value;
-    const shiftValue = parseInt(document.getElementById("shiftValue").value);
-    const decryptedText = ceasarCipherLogic(inputText, 26 - (shiftValue % 26));
-    document.getElementById("result").innerText = `Decrypted Text: ${decryptedText}\nOriginal Text: ${inputText}\nShift Value: ${shiftValue}`;
+    const shiftInput = document.getElementById('shiftValue');
+    const originalK = parseInt(shiftInput.value) || 0;
+
+    shiftInput.value = originalK * -1;
+    encryptCeasarCipher();
+
+    document.getElementById('result').innerText = document.getElementById('result').innerText.replace("Encrypted", "Decrypted");
+    shiftInput.value = originalK;
 }
 
-function vigenèreCipherLogic(text, key)
-{
-    
+function vigenèreCipherLogic(text, key) {
+
 }
