@@ -153,6 +153,17 @@ function encryptAffineCipher() {
     const originalText = document.getElementById("inputText").value;
     const k = parseInt(document.getElementById("kValue").value);
     const b = parseInt(document.getElementById("bValue").value);
+
+    if (k < 1 || k > 24 || modInverse(k, 26) === -1) {
+        document.getElementById("result").innerText = "Error: k must be between 1-24 and coprime with 26.";
+        return;
+    }
+
+    if (b < 0 || b > 25) {
+        document.getElementById("result").innerText = "Error: b must be between 0-25.";
+        return;
+    }
+
     let result = "";
     for (let i = 0; i < originalText.length; i++) {
         const code = originalText.charCodeAt(i);
@@ -184,9 +195,20 @@ function decryptAffineCipher() {
     const encryptedText = document.getElementById("inputText").value;
     const k = parseInt(document.getElementById("kValue").value);
     const b = parseInt(document.getElementById("bValue").value);
+
+    if (k < 1 || k > 24) {
+        document.getElementById("result").innerText = "Error: k must be between 1-24.";
+        return;
+    }
+
+    if (b < 0 || b > 25) {
+        document.getElementById("result").innerText = "Error: b must be between 0-25.";
+        return;
+    }
+
     const kInv = modInverse(k, 26);
     if (kInv === -1) {
-        document.getElementById("result").innerText = "Error: k has no modular inverse modulo 26. Choose a different k.";
+        document.getElementById("result").innerText = "Error: k has no modular inverse modulo 26.";
         return;
     }
     let result = "";
