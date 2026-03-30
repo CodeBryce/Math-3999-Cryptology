@@ -309,32 +309,15 @@ function findInverse(k) {
 } */
 
 function encryptHillCipher() {
-    const text = document.getElementById("inputText").value;
-    const keyMatrixInput = document.getElementById("keyMatrix").value;
+    const text = document.getElementById("inputText").value.toUpperCase().replace(/[^A-Z]/g, '');
+    const keyMatrixInput = document.getElementById("keyMatrix").value.toUpperCase();
     const outputDiv = document.getElementById("result");
-    var keyMatrix = keyMatrixInput.split(";");
-    console.log(keyMatrix);
 
-    if (keyMatrix.length === 0) {
+    const keyRows = keyMatrixInput.split(";");
+    if (keyRows.length === 0) {
         outputDiv.innerText = "Invalid key matrix format.";
         return;
     }
-    const n = keyMatrix.length;
-    const m = keyMatrix[0].length;
-    let result = "";
-    for (let i = 0; i < text.length; i += m) {
-        let block = text.slice(i, i + m).padEnd(m, 'X');
-        let blockVector = block.split('').map(char => char.toUpperCase().charCodeAt(0) - 65);
-        let encryptedVector = new Array(n).fill(0);
-        for (let row = 0; row < n; row++) {
-            for (let col = 0; col < m; col++) {
-                encryptedVector[row] += keyMatrix[row][col] * blockVector[col];
-            }
-            result += String.fromCharCode((encryptedVector[row] % 26) + 65);
-        }
-    }
-    outputDiv.innerText = "Encrypted Text: " + result;
-}
 
-function decryptHillCipher() {
+    outputDiv.innerText = "Encrypted Text: " + result;
 }
