@@ -228,3 +228,9 @@ function decryptAffineCipher() {
     }
     document.getElementById("result").innerText = `Decrypted Text: ${result}\nEncrypted Text: ${encryptedText}\nKey: ${k}, ${b}`;
 }
+
+function encryptHillCipher() {
+}
+
+function decryptHillCipher() {
+}
