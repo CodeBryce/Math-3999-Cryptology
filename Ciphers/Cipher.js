@@ -309,6 +309,7 @@ function findInverse(k) {
 } */
 
 function encryptHillCipher() {
+
 }
 
 function decryptHillCipher() {
