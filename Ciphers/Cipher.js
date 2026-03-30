@@ -312,9 +312,10 @@ function encryptHillCipher() {
     const text = document.getElementById("inputText").value;
     const keyMatrixInput = document.getElementById("keyMatrix").value;
     const outputDiv = document.getElementById("result");
-    var keyMatrix = keyMatrixInput.split(";").map(row => row.split(",").map(Number));
+    var keyMatrix = keyMatrixInput.split(";");
+    console.log(keyMatrix);
 
-    if (keyMatrix.length === 0 || keyMatrix.some(row => row.length !== keyMatrix[0].length)) {
+    if (keyMatrix.length === 0) {
         outputDiv.innerText = "Invalid key matrix format.";
         return;
     }
