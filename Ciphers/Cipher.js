@@ -310,13 +310,36 @@ function findInverse(k) {
 
 function encryptHillCipher() {
     const text = document.getElementById("inputText").value.toUpperCase().replace(/[^A-Z]/g, '');
-    const keyMatrixInput = document.getElementById("keyMatrix").value.toUpperCase();
+    const keyMatrixInput = document.getElementById("keyMatrix").value;
     const outputDiv = document.getElementById("result");
 
     const keyRows = keyMatrixInput.split(";");
     if (keyRows.length === 0) {
         outputDiv.innerText = "Invalid key matrix format.";
         return;
+    }
+
+
+    const keyMatrix = keyRows.map(row =>
+        row.trim().split("").map(char => char.toUpperCase().charCodeAt(0) - 65)
+    );
+    const n = keyMatrix.length;
+
+    let paddedText = text;
+    while (paddedText.length % n !== 0) {
+        paddedText += "X";
+    }
+
+    let result = "";
+    for (let i = 0; i < paddedText.length; i += n) {
+        for (let row = 0; row < n; row++) {
+            let sum = 0;
+            for (let col = 0; col < n; col++) {
+                let charCode = paddedText.charCodeAt(i + col) - 65;
+                sum += keyMatrix[row][col] * charCode;
+            }
+            result += String.fromCharCode((sum % 26) + 65);
+        }
     }
 
     outputDiv.innerText = "Encrypted Text: " + result;
