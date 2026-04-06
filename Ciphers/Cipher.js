@@ -324,6 +324,15 @@ function encryptHillCipher() {
         row.trim().split("").map(char => char.toUpperCase().charCodeAt(0) - 65)
     );
     const n = keyMatrix.length;
+    if (n === 0) {
+        outputDiv.innerText = "Key matrix cannot be empty.";
+        return;
+    }
+    const isSquare = keyMatrix.every(row => row.length === n);
+    if (!isSquare) {
+        outputDiv.innerText = "Key matrix must be square.";
+        return;
+    }
 
     let paddedText = text;
     while (paddedText.length % n !== 0) {
