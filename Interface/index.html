@@ -19,7 +19,8 @@
             <option value="ceasar">Ceasar Cipher</option>
             <option value="vigenère">Vigenère Cipher</option>
             <option value="affine">Affine Cipher</option>
-            <option value="Hill">Hill Cipher</option>
+            <option value="hill">Hill Cipher</option>
+            <option value="block">Block Cipher</option>
             <!-- Add more cipher options here -->
         </select>
     </div>
@@ -43,14 +44,22 @@
             <button onclick="encryptAffineCipher()">Encrypt</button>
             <button onclick="decryptAffineCipher()">Decrypt</button>
         </div>
-        <div id="Hill">
+        <div id="hill">
             <h2>Hill Cipher</h2>
             <input type="text" id="keyMatrix"
                 placeholder="Enter key matrix with semicolons separating matrix rows (e.g., GCD;DCA)">
             <button onclick="encryptHillCipher()">Encrypt</button>
             <button onclick="decryptHillCipher()">Decrypt</button>
         </div>
-        <p id="result"></p>
+        <div id="block">
+            <h2>Block Cipher</h2>
+            <input type="number" id="blockSize" placeholder="Enter block size">
+            <button onclick="encryptBlockCipher()">Encrypt</button>
+            <button onclick="decryptBlockCipher()">Decrypt</button>
+        </div>
+        <!-- Add more cipher sections here -->
+    </div>
+    <p id="result"></p>
 </body>
 
 </html>

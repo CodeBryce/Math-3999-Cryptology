@@ -443,3 +443,9 @@ function decryptHillCipher() {
 
     outputDiv.innerText = "Decrypted Text: " + result;
 }
+
+function encryptBlockCipher() {
+}
+
+function decryptBlockCipher() {
+}
